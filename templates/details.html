@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}{{ student.first_name }} {{ student.last_name }} · Lumen{% endblock %}
+
+{% block content %}
+<section class="page">
+  <div class="wrap details-grid">
+    <img
+      class="student-photo"
+      src="{{ url_for('static', filename='uploads/' ~ student.image_name) }}"
+      alt="Photo of {{ student.first_name }} {{ student.last_name }}"
+    >
+    <div>
+      <p class="kicker">Student details</p>
+      <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+      <p class="status-badge status-{{ student.admission_status|lower|replace(' ', '-') }}" id="status-badge">{{ student.admission_status }}</p>
+
+      <dl class="detail-list">
+        <div>
+          <dt>Email</dt>
+          <dd>{{ student.email }}</dd>
+        </div>
+        <div>
+          <dt>Phone</dt>
+          <dd>{{ student.phone }}</dd>
+        </div>
+        <div>
+          <dt>Address</dt>
+          <dd>{{ student.address }}</dd>
+        </div>
+        <div>
+          <dt>Date of birth</dt>
+          <dd>{{ student.date_of_birth }}</dd>
+        </div>
+        <div>
+          <dt>Gender</dt>
+          <dd>{{ student.gender }}</dd>
+        </div>
+        <div>
+          <dt>Faculty</dt>
+          <dd>{{ student.faculty }}</dd>
+        </div>
+        <div>
+          <dt>Department</dt>
+          <dd>{{ student.department }}</dd>
+        </div>
+        <div>
+          <dt>Entry score</dt>
+          <dd>{{ student.entry_score }}</dd>
+        </div>
+      </dl>
+
+      <form id="status-form" class="status-form" action="{{ url_for('student_status', student_id=student.id) }}" method="post">
+        <label for="admission-status">Admission status</label>
+        <select id="admission-status" name="admission_status">
+          {% for status in status_options %}
+          <option value="{{ status }}" {% if student.admission_status == status %}selected{% endif %}>{{ status }}</option>
+          {% endfor %}
+        </select>
+        <p class="status-note" id="status-note" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/status.js') }}"></script>
+{% endblock %}

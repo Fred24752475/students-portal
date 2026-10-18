@@ -1,0 +1,24 @@
+{
+  "faculties": [
+    {
+      "name": "Faculty of Science",
+      "departments": ["Computer Science", "Mathematics", "Physics", "Chemistry"]
+    },
+    {
+      "name": "Faculty of Engineering",
+      "departments": ["Civil Engineering", "Electrical Engineering", "Mechanical Engineering"]
+    },
+    {
+      "name": "Faculty of Arts",
+      "departments": ["English", "History", "Music", "Theatre Arts"]
+    },
+    {
+      "name": "Faculty of Business",
+      "departments": ["Accounting", "Banking and Finance", "Marketing"]
+    },
+    {
+      "name": "Faculty of Law",
+      "departments": ["Private Law", "Public Law"]
+    }
+  ]
+}

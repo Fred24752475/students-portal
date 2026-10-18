@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Lumen Student Portal{% endblock %}
+
+{% block content %}
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div>
+      <p class="kicker">Student portal</p>
+      <h1>Personal and academic records, kept in one place.</h1>
+      <p class="lede">
+        Lumen is a simple portal for students. Enter your details, keep a photo with the record,
+        and review every student from one list.
+      </p>
+      <a class="button" href="{{ url_for('portal_form') }}">Go to the portal form</a>
+    </div>
+    <img src="{{ url_for('static', filename='images/campus.svg') }}" alt="A small campus building">
+  </div>
+</section>
+{% endblock %}

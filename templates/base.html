@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Lumen Student Portal{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,680&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="{{ url_for('landing') }}">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span>Lumen</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="{{ url_for('landing') }}" {% if request.endpoint == 'landing' %}aria-current="page"{% endif %}>Home</a>
+        <a href="{{ url_for('portal_form') }}" {% if request.endpoint == 'portal_form' %}aria-current="page"{% endif %}>Portal form</a>
+        <a href="{{ url_for('students_index') }}" {% if request.endpoint in ('students_index', 'student_details') %}aria-current="page"{% endif %}>Students</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; {{ year }} Lumen Student Portal</p>
+    </div>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

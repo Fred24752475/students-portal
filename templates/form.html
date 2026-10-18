@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Portal form · Lumen{% endblock %}
+
+{% block content %}
+<section class="page">
+  <div class="wrap narrow">
+    <p class="kicker">Portal form</p>
+    <h1>Student details</h1>
+    <p class="lede">Every field is required. The photo is stored with the project, and the rest of the record goes into the database.</p>
+
+    <p class="form-error" id="form-error" {% if not error %}hidden{% endif %}>{{ error }}</p>
+
+    <form id="portal-form" class="portal-form" method="post" action="{{ url_for('portal_form') }}" enctype="multipart/form-data" novalidate>
+      <div class="field-row">
+        <div class="field">
+          <label for="first-name">First name</label>
+          <input id="first-name" name="first_name" type="text" value="{{ form.first_name }}" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="last-name">Last name</label>
+          <input id="last-name" name="last_name" type="text" value="{{ form.last_name }}" autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="{{ form.email }}" autocomplete="email">
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone number</label>
+        <input id="phone" name="phone" type="text" value="{{ form.phone }}" autocomplete="tel" placeholder="0241234567">
+      </div>
+
+      <div class="field">
+        <label for="address">Address</label>
+        <input id="address" name="address" type="text" value="{{ form.address }}" autocomplete="street-address">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="date-of-birth">Date of birth</label>
+          <input id="date-of-birth" name="date_of_birth" type="date" value="{{ form.date_of_birth }}">
+        </div>
+        <div class="field">
+          <label for="entry-score">Entry score</label>
+          <input id="entry-score" name="entry_score" type="number" min="0" max="100" value="{{ form.entry_score }}">
+        </div>
+      </div>
+
+      <fieldset class="field">
+        <legend>Gender</legend>
+        <label class="choice">
+          <input type="radio" name="gender" value="Female" {% if form.gender == 'Female' %}checked{% endif %}>
+          Female
+        </label>
+        <label class="choice">
+          <input type="radio" name="gender" value="Male" {% if form.gender == 'Male' %}checked{% endif %}>
+          Male
+        </label>
+      </fieldset>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="faculty">Faculty</label>
+          <select id="faculty" name="faculty" data-selected="{{ form.faculty }}">
+            <option value="">Loading faculties...</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="department">Department</label>
+          <select id="department" name="department" data-selected="{{ form.department }}">
+            <option value="">Select a faculty first</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="image">Student photo</label>
+        <input id="image" name="image" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+      </div>
+
+      <button class="button" type="submit">Submit</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
+{% endblock %}
